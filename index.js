@@ -54,6 +54,12 @@ app.post('/users', (req, res) => {
   });
 });
 
+
+app.get('/', (req, res) => {
+
+res.send("hello world")
+});
+
 // READ a specific user by phone_number from MySQL
 app.get('/users/:phone_number', (req, res) => {
   const phone_number = req.params.phone_number;
