@@ -11,7 +11,7 @@ app.use(cors());
 // Function to connect to the database
 function connectToDatabase() {
   const connection = mysql2.createConnection({
-    host: '192.168.19.240',
+    host: 'localhost', // or '127.0.0.1'
     user: 'root',
     password: '', 
     database: 'poonamstorage'  // Replace with your database name
