@@ -61,11 +61,11 @@ res.send("hello world")
 });
 
 // READ a specific user by phone_number from MySQL
-app.get('/users/:phone_number', (req, res) => {
-  const phone_number = req.params.phone_number;
+app.get('/users/:id', (req, res) => {
+  const id = req.params.id;
 
-  const query = 'SELECT * FROM krishna WHERE phone_number = ?';
-  dbConnection.query(query, [phone_number], (err, results) => {
+  const query = 'SELECT * FROM krishna WHERE id = ?';
+  dbConnection.query(query, [id], (err, results) => {
     if (err) {
       console.error('Error fetching user from the database:', err.message);
       return res.status(500).send({ message: 'Error fetching user' });
@@ -78,13 +78,13 @@ app.get('/users/:phone_number', (req, res) => {
 });
 
 // UPDATE a user by phone_numberata
-app.patch('/users/:phone_number', (req, res) => {
+app.patch('/users/:id', (req, res) => {
 
-  const phone_number = req.params.phone_number;
+  const id = req.params.id;
   const { name, address, email } = req.body;
 
-  const query = 'UPDATE krishna SET name = ?, address = ?, email = ? WHERE phone_number = ?';
-  const values = [name, address, email, phone_number];
+  const query = 'UPDATE krishna SET name = ?, address = ?, email = ? WHERE id = ?';
+  const values = [name, address, email, id];
 
   dbConnection.query(query, values, (err, result) => {
     if (err) {
@@ -98,12 +98,12 @@ app.patch('/users/:phone_number', (req, res) => {
   });
 });
 
-// DELETE a user by phone_number
-app.delete('/users/:phone_number', (req, res) => {
-  const phone_number = req.params.phone_number;
+// DELETE a user by id
+app.delete('/users/:id', (req, res) => {
+  const id = req.params.id;
 
-  const query = 'DELETE FROM krishna WHERE phone_number = ?';
-  dbConnection.query(query, [phone_number], (err, result) => {
+  const query = 'DELETE FROM krishna WHERE id = ?';
+  dbConnection.query(query, [id], (err, result) => {
     if (err) {
       console.error('Error deleting user from the database:', err.message);
       return res.status(500).send({ message: 'Error deleting user' });
