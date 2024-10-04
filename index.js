@@ -47,7 +47,7 @@ app.post('/users', (req, res) => {
   dbConnection.query(query, values, (err, result) => {
     if (err) {
       console.error('Error inserting user into the database:', err.message);
-      return res.status(500).send({ message: 'Error inserting user' });
+      return res.status(500).send({ message: 'Error inserting user',err });
     }
     console.log('User added to the database with phone_number:', newUser.phone_number);
     res.status(201).send(newUser);
