@@ -1,7 +1,7 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import cors from 'cors';
-import mysql2 from 'mysql2';
+import { Pool } from 'pg';
 
 // Initialize Express
 const app = express();
@@ -10,12 +10,9 @@ app.use(cors());
 
 // Function to connect to the database
 function connectToDatabase() {
-  const connection = mysql2.createConnection({
-    host: 'localhost', // or '127.0.0.1'
-    user: 'root',
-    password: '', 
-    database: 'poonamstorage'  // Replace with your database name
-  });
+  const pool = new Pool({
+    connectionString: 'postgres://default:dbSGfIXrW3p8@ep-empty-dream-a45k8a88-pooler.us-east-1.aws.neon.tech:5432/verceldb?sslmode=require',
+  })
 
   connection.connect((err) => {
     if (err) {
